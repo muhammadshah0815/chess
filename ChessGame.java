@@ -42,8 +42,19 @@ class Position {
     int col;
     
     public Position(String input) {
-        // Convert input like 'e2' to row and column indices
-        // Implement this based on your board representation
+        if (input.length() != 2) {
+            throw new IllegalArgumentException("Input should be in the format 'a1', 'e2', etc.");
+        }
+
+        char fileChar = input.charAt(0);
+        char rankChar = input.charAt(1);
+
+        if (fileChar < 'a' || fileChar > 'h' || rankChar < '1' || rankChar > '8') {
+            throw new IllegalArgumentException("Invalid input. File should be between 'a' and 'h', and rank should be between '1' and '8'.");
+        }
+
+        col = fileChar - 'a';
+        row = 8 - (rankChar - '0');
     }
 }
 
